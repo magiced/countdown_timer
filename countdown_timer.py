@@ -3,6 +3,7 @@
 import tkinter as tk
 import simpleaudio as sa
 import time
+import os
 
 """ VARIABLES """
 
@@ -15,23 +16,22 @@ b_tick = tk.BooleanVar()
 b_noise = tk.BooleanVar()
 b_end_signal = tk.BooleanVar()
 
-tick_file_path = '/home/ed/py/countdown_timer/tick.wav'
-noise_file_path = '/home/ed/py/countdown_timer/brown_noise.wav'
-alarm_file_path = '/home/ed/py/countdown_timer/klaxon.wav'
+tick_file_path = os.getcwd() + '/tick.wav'
+noise_file_path = os.getcwd() + '/brown_noise.wav'
+alarm_file_path = os.getcwd() + '/klaxon.wav'
 
 tick_wave_obj = sa.WaveObject.from_wave_file(tick_file_path)
 alarm_wave_obj = sa.WaveObject.from_wave_file(alarm_file_path)
 noise_wave_obj = sa.WaveObject.from_wave_file(noise_file_path)
 
 """ FUNCTIONS """
-
 def toggle_timer():
     global b_timer_running
     global delay_time
     global target_time
     global noise_wave_obj
 
-    if b_timer_running == False:
+    if b_timer_running is False:
         # target_time = time.time() + delay_time + 1
         target_time = time.time() + scl_time.get() + 1
         b_timer_running = True
@@ -44,6 +44,7 @@ def toggle_timer():
         btn_start["text"] = "START"
         if noise_play_obj.is_playing():
             noise_play_obj.stop()   
+
 
 def reset_timer():
     global b_timer_running
@@ -64,21 +65,18 @@ def update_display():
             if time_string != time_string_last:
                 clock['text'] = time_string
                 if b_tick.get():
-                    print("TICK")
                     tick_play_obj = tick_wave_obj.play()
         else:
             toggle_timer()
             if b_end_signal.get():
-                print("END-O")
                 alarm_play_obj = alarm_wave_obj.play()
         time_string_last = time_string
     else:
-        clock["text"] = "00:00:00"
+        clock['text'] = '00:00:00'
 
-    clock.after(200,update_display) #after x time call tick
+    clock.after(200,update_display) # after x time update the display
 
 """ GUI """
-print("kittehs")
 root.title("TIMER")
 clock = tk.Label(root, font=('times', 40, 'bold'), fg='green',bg='black')
 scl_time = tk.Scale(root, from_=0, to_=60, orient="horizontal")
@@ -94,5 +92,5 @@ chk_noise.pack()
 chk_tick.pack()
 chk_end_signal.pack()
 
-update_display() #first call so that after time tick is recalled
+update_display()  # first call so that after time tick is recalled
 root.mainloop()
