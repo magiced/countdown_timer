@@ -20,8 +20,4 @@ install using pip: `pip install simpleaudio`
 + make the brown noise wav smaller
 + change all tk widgets to ttk to make it prettier
 + change clock font to a digital clock font
-+ fix brown noise not stopping bug
 + add json files for the settings so that the noises and default times can be changed
-+ rearrange layout, change to grid rather than pack
-+ change slider to combo box
-+ make box title show time
