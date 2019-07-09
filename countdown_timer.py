@@ -41,7 +41,6 @@ def toggle_timer():
         b_timer_running = True
         btn_start["text"] = "STOP"
         if b_noise.get():
-            print("I'm Playing a NOISE!!!!")
             noise_play_obj = noise_wave_obj.play()
     else:
         b_timer_running = False
@@ -89,7 +88,7 @@ root.title("TIMER")
 clock = tk.Label(root, font=('times', 40, 'bold'), fg='green',bg='black')
 scl_time = tk.Scale(root, from_=0, to_=60, orient="horizontal")
 cbo_time = ttk.Combobox(root,values=(0.1,1,2,3,4,5,10,15,20,25,30))
-btn_start = tk.Button(root, text='START', command=toggle_timer)
+btn_start = ttk.Button(root, text='START', command=toggle_timer)
 chk_tick = tk.Checkbutton(root, text="TICK", variable=b_tick)
 chk_noise = tk.Checkbutton(root, text="NOISE", variable=b_noise)
 chk_end_signal = tk.Checkbutton(root, text="ALARM", variable=b_end_signal)
@@ -104,7 +103,7 @@ chk_end_signal = tk.Checkbutton(root, text="ALARM", variable=b_end_signal)
 
 clock.grid(row=0, column=0, columnspan=3, sticky="EW")
 cbo_time.grid(row=1, column=0, )
-cbo_time.current(0)
+cbo_time.current(8)
 btn_start.grid(row=1, column=1, columnspan=2, sticky="EW")
 chk_noise.grid(row=3, column=0)
 chk_tick.grid(row=3, column=1)

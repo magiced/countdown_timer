@@ -21,3 +21,6 @@ install using pip: `pip install simpleaudio`
 + change all tk widgets to ttk to make it prettier
 + change clock font to a digital clock font
 + add json files for the settings so that the noises and default times can be changed
++ add menus for tick noise and end signal options
++ add volume controls for each noise
++ change colours of buttons etc to visually fit together better
